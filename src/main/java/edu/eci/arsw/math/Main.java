@@ -6,6 +6,7 @@
 package edu.eci.arsw.math;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
@@ -16,7 +17,25 @@ public class Main {
     public static void main(String a[]) {
         System.out.println(bytesToHex(PiDigits.getDigits(0, 10)));
         System.out.println(bytesToHex(PiDigits.getDigits(1, 100)));
-        System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
+        //System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
+
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                byte[] result = PiDigits.getDigits(1, 1000000,4);
+                System.out.println(bytesToHex(result));
+            }
+        };
+
+        Thread calculate = new Thread(task);
+        calculate.start();
+
+        Scanner sc = new Scanner(System.in);
+        while (calculate.isAlive()) {
+            sc.nextLine();
+            BBPThread.resumeAll();
+        }
+        sc.close();
     }
 
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
