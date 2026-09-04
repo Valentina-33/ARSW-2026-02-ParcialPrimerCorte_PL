@@ -11,7 +11,41 @@ public class PiDigits {
     public static int DigitsPerSum = 8;
     private static double Epsilon = 1e-17;
 
-    
+    public static byte[] getDigits(int start, int count, int n_threads) {
+        // We are going to creat n_threads according what needs to be verified
+        int range = count / n_threads;
+        BBPThread[] threads = new BBPThread[n_threads];
+
+        for (int i = 0; i < n_threads-1; i++) {
+            threads[i] = new BBPThread(start + range*i, range);
+            threads[i].start();
+        }
+        threads[n_threads-1] = new BBPThread(start + range*(n_threads-1), count - range*(n_threads-1));
+        threads[n_threads-1].start();
+
+        // Executing join
+        for (BBPThread t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        // Gathering digits
+        byte[] digits = new byte[count];
+        int index = 0;
+        for (BBPThread t : threads) {
+            byte[] t_digits = t.getDigits();
+            for (byte d : t_digits) {
+                digits[index] = d;
+                index++;
+            }
+        }
+
+        return digits;
+    }
+
     /**
      * Returns a range of hexadecimal digits of pi.
      * @param start The starting location of the range.
