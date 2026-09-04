@@ -15,6 +15,7 @@ public class BBPThread extends Thread {
 
     @Override
     public void run() {
+        // Same actions PiDigits.getDigits makes
         digits = new byte[count];
         double sum = 0;
         long lastChecked = System.currentTimeMillis();
@@ -33,7 +34,10 @@ public class BBPThread extends Thread {
             sum = 16 * (sum - Math.floor(sum));
             digits[i] = (byte) sum;
 
+
+            // Every 5 seconds threads stop
             if (System.currentTimeMillis() - lastChecked >= 5000) {
+                // Number of processed digits
                 System.out.println(Thread.currentThread().getName() + " ha procesado " + (i+1) + " dígitos." );
 
                 BBPThread.pauseAll();

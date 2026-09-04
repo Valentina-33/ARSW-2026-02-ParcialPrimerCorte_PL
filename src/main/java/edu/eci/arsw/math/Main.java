@@ -17,19 +17,20 @@ public class Main {
     public static void main(String a[]) {
         System.out.println(bytesToHex(PiDigits.getDigits(0, 10)));
         System.out.println(bytesToHex(PiDigits.getDigits(1, 100)));
-        System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
+        //System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
 
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                byte[] result = PiDigits.getDigits(1, 1000000,4);
+                byte[] result = PiDigits.getDigits(1, 10000000,5);
                 System.out.println(bytesToHex(result));
             }
         };
 
         Thread calculate = new Thread(task);
-        //calculate.start();
+        calculate.start();
 
+        // Continue process when user press ENTER
         Scanner sc = new Scanner(System.in);
         while (calculate.isAlive()) {
             sc.nextLine();

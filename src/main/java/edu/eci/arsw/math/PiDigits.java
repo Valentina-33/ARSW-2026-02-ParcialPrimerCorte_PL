@@ -11,8 +11,9 @@ public class PiDigits {
     public static int DigitsPerSum = 8;
     private static double Epsilon = 1e-17;
 
+    // getDigits recieves an additonal parameter n_threads
     public static byte[] getDigits(int start, int count, int n_threads) {
-        // We are going to creat n_threads according what needs to be verified
+        // We are going to create n_threads according what is needed to be verified
         int range = count / n_threads;
         BBPThread[] threads = new BBPThread[n_threads];
 
