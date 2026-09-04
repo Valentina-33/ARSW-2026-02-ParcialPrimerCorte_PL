@@ -15,5 +15,13 @@ Para este ejercicio se quiere calcular, en el menor tiempo posible, y en una sol
 3. Ajuste la implementación para que cada 5 segundos los hilos se detengan e impriman el número de digitos que han procesado y una vez se presione la tecla enter que los hilos continúen su proceso.
 
 
+**Resolución del ejercicio**
 
+En primera instancia voy a repoducir el programa original. Ya teníamos implementada la solución, pero vamos a comentar el thread:
+![Approach1](img_1.png)
+Esto es lo que imprime, mas sin embargo, tardará mucho en imprimir la última secuencia de dígitos puesto que son muchos caracteres
+![Approach2](img_2.png)
+
+
+Y aquí una captura de los resultados al correr el programa implementado:
 ![Finished](img.png)
