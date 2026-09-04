@@ -18,10 +18,11 @@ Para este ejercicio se quiere calcular, en el menor tiempo posible, y en una sol
 **Resolución del ejercicio**
 
 En primera instancia voy a repoducir el programa original. Ya teníamos implementada la solución, pero vamos a comentar el thread:
-![Approach1](img_1.png)
+![Approach1](img/img_1.png)
+
 Esto es lo que imprime, mas sin embargo, tardará mucho en imprimir la última secuencia de dígitos puesto que son muchos caracteres
-![Approach2](img_2.png)
+![Approach2](img/img_2.png)
 
 
 Y aquí una captura de los resultados al correr el programa implementado:
-![Finished](img.png)
+![Finished](img/img.png)
